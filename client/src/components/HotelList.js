@@ -9,8 +9,8 @@ function HotelList({ hotels, onBook }) {
           <img src={hotel.image} alt={hotel.name} />
           <h3>{hotel.name}</h3>
           <p>Location: {hotel.location}</p>
-          <p>Rating: {hotel.rating} ⭐</p>
           <p>Price: ₹{hotel.price}</p>
+          <p>Rating: ⭐ {hotel.rating}</p>
           <button onClick={() => onBook(hotel)}>Book Now</button>
         </div>
       ))}

@@ -3,13 +3,14 @@ import './SearchBar.css';
 
 function SearchBar({ query, setQuery }) {
   return (
-    <input
-      type="text"
-      placeholder="Search hotels or location..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-      className="search-bar"
-    />
+    <div className="search-bar">
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search hotels by name or location..."
+      />
+    </div>
   );
 }
 

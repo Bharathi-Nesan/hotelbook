@@ -1,56 +1,55 @@
 import React, { useState } from 'react';
 import './BookingForm.css';
+import { useNavigate } from 'react-router-dom';
 
 function BookingForm({ selectedHotel, onClose, onBook }) {
   const [name, setName] = useState('');
-  const [roomType, setRoomType] = useState('Single');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const bookingData = {
-      customerName: name,
-      hotelName: selectedHotel.name,
-      location: selectedHotel.location,
-      price: selectedHotel.price,
-      rating: selectedHotel.rating,
-      image: selectedHotel.image,
-      roomType,
+      name,
       checkIn,
       checkOut,
+      hotel: selectedHotel,
+      roomNumber: Math.floor(Math.random() * 900) + 100
     };
 
     onBook(bookingData);
     onClose();
+    navigate('/payment', { state: { booking: bookingData } });
   };
 
   return (
-    <div className="booking-form-overlay">
-      <div className="booking-form">
+    <div className="booking-form-container">
+      <form onSubmit={handleSubmit} className="booking-form">
         <h2>Book {selectedHotel.name}</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Your Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-
-          <label>Room Type:</label>
-          <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
-            <option>Single</option>
-            <option>Double</option>
-            <option>Deluxe</option>
-          </select>
-
-          <label>Check-in Date:</label>
-          <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} required />
-
-          <label>Check-out Date:</label>
-          <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} required />
-
-          <button type="submit">Confirm Booking</button>
-          <button type="button" onClick={onClose}>Cancel</button>
-        </form>
-      </div>
+        <input
+          type="text"
+          placeholder="Your Name"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="date"
+          required
+          value={checkIn}
+          onChange={(e) => setCheckIn(e.target.value)}
+        />
+        <input
+          type="date"
+          required
+          value={checkOut}
+          onChange={(e) => setCheckOut(e.target.value)}
+        />
+        <button type="submit">Confirm Booking</button>
+        <button type="button" onClick={onClose} className="cancel-btn">Cancel</button>
+      </form>
     </div>
   );
 }

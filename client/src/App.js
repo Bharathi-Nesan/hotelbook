@@ -5,6 +5,10 @@ import HotelList from './components/HotelList';
 import BookingForm from './components/BookingForm';
 import SearchBar from './components/SearchBar';
 import MyBookings from './components/MyBookings';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Payment from './components/Payment';
+import Confirmation from './components/Confirmation';
 
 function App() {
   const [hotels] = useState([
@@ -48,6 +52,7 @@ function App() {
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [bookings, setBookings] = useState([]);
+  const [user, setUser] = useState(null);
 
   const filteredHotels = hotels.filter(hotel =>
     hotel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -79,7 +84,11 @@ function App() {
             </>
           }
         />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/bookings" element={<MyBookings bookings={bookings} />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/confirmation" element={<Confirmation />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,27 @@
+.confirmation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background-color: #f8f8f8;
+}
+
+.confirmation-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.confirmation-card h2 {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.confirmation-card a {
+  margin-top: 15px;
+  display: inline-block;
+  text-decoration: none;
+  color: #007bff;
+}
